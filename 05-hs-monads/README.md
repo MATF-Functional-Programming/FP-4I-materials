@@ -25,7 +25,7 @@
 - Ako posmatramo `Maybe` vrednost kao rezultat nekog izracunavanja koje moze da uspe (`Just x`) i da ne uspe (`Nothing`), operator `<|>` treba da spoji dva takva izracunavanja u jedno, ali posto `Maybe` moze da sadrzi samo jedan rezultat, uzima se prvi rezultat koji postoji (odnosno prvi koji nije `Nothing`) 
 - Slicno, i liste mozemo da posmatramo kao izracunavanja koja mogu da imaju nula ili vise rezultata
 - U ovom slucaju, kada hocemo da iskombinujemo dva izracunavanja u jedno, mozemo da sacuvamo sve moguce rezultate - samo nadovezemo dve liste
-- Kako instancirati `Applicative` za `Maybe`?
+- Kako instancirati `Alternative` za `Maybe`?
     ```hs
     instance Alternative Maybe where
         empty = Nothing
@@ -36,12 +36,12 @@
 - Alternative pominjemo ovde jer cemo ih koristiti na narednim casovima. U kontekstu hijerarhije `Functor a => Applicative a => Monad a`, oni su zasebna klasa.
 
 ### Monads
-- Ako imamo vrednost sa kontekstom `m a`, kako da ga damo funkciji `a -> m b`?
+- Glavni problem: **vecina funkcija koje koristimo su "neciste", tj. tipa `a -> m b`, gde je `m` funktor** (npr. `readFile :: String -> IO String`)
+- Ako imamo vrednost u kontekstu `m a`, kako da je prosledimo funkciji `a -> m b`?
 - Ukoliko resimo ovaj problem, mozemo praviti i kompozicije ovakvih funkcija!
 - Zelimo funkciju koja radi: `(Monad m) => m a -> (a -> m b) -> m b` 
 - _Bind_ funkcija `:t (>>=)`
 - **Monade** su aplikativni funktori koji definisu i bind (`>>=`)
-- `:t (>>=)`
 - `[]`, `Maybe`, `Either`, `[]`, `(->) r`, `IO` su monade
 - Kako bismo definisali `>>=` za `Maybe`?
     ```hs
@@ -79,7 +79,8 @@
         Nothing  
         ```
     - `return` isto sto i `pure`
-    - `fail` se ne koristi u nasim kodovima, vec se koristi unutar jezika
+    - `fail` se ne koristi u nasim kodovima, vec se koristi unutar jezika, sad je u `MonadFail` klasi
+    - `fail` se poziva kad se desi pattern missmatch (bice objasnjeno kasnije)
 - Kako bismo "dokazali" da je `Maybe` instanca `Monad` klase?
     ```hs
     instance Monad Maybe where  

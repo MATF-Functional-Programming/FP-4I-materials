@@ -1,0 +1,79 @@
+
+# Created by https://www.gitignore.io/api/haskell
+# Edit at https://www.gitignore.io/?templates=haskell
+
+### Haskell ###
+dist
+dist-*
+cabal-dev
+*.o
+*.hi
+*.chi
+*.chs.h
+*.dyn_o
+*.dyn_hi
+.hpc
+.hsenv
+.cabal-sandbox/
+cabal.sandbox.config
+*.prof
+*.aux
+*.hp
+*.eventlog
+.stack-work/
+*yaml.lock
+cabal.project.local
+cabal.project.local~
+.HTF/
+.ghc.environment.*
+
+# End of https://www.gitignore.io/api/haskell
+
+*.o
+*.out
+
+# Created by https://www.toptal.com/developers/gitignore/api/c++
+# Edit at https://www.toptal.com/developers/gitignore?templates=c++
+
+### C++ ###
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Linker files
+*.ilk
+
+# Debugger Files
+*.pdb
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# End of https://www.toptal.com/developers/gitignore/api/c++
+

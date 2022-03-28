@@ -7,6 +7,8 @@ main0 = getLine >>= putStrLn
 
 main0' = getLine >>= (\line -> putStrLn line)
 
+main0two = getLine >>= (\line -> putStrLn line >> putStrLn line)
+
 main0do = do { line <- getLine
              ; putStrLn line
              }
