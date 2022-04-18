@@ -22,8 +22,15 @@ newtype Parser a = Parser
                  }
 
 -- If we want to error report, we might do something like this:
--- type Parser a = String -> Either (Int, Int, String) (String, a)
--- so that we have information about the error and the location in input
+type ParserInput = String
+type Line = Int
+type Column = Int
+type ErrorMessage = String
+type ParserError = (ErrorMessage, Line, Column)
+type ParserResult a = (ParserInput, a)
+newtype VerboseParser a = VerboseParser 
+                        { runVerboseParser :: ParserInput -> Either ParserError (ParserResult a)
+                        }
 
 instance Functor Parser where
     fmap f (Parser p) = Parser $ \input -> do 
@@ -49,11 +56,13 @@ charP x = Parser f
            | otherwise = Nothing
          f [] = Nothing
 
+-- runParser (charP 'h') "hello"
+
 stringP :: String -> Parser String
 stringP input = sequenceA $ map charP input
 
--- runParser (charP 'h') "hello"
 -- runParser (fmap ord $ charP 'h') "hello"
+-- runParser (stringP "hello) "hello world!"
 
 jsonNull :: Parser JsonValue
 jsonNull = (\_ -> JsonNull) <$> stringP "null"
@@ -66,7 +75,7 @@ jsonBool :: Parser JsonValue
 jsonBool = fmap f $ stringP "true" <|> stringP "false"
     where f "true"  = JsonBool True
           f "false" = JsonBool False
-          f _       = undefined
+          f _       = undefined             -- Note: unreachable
 
 -- runParser jsonBool "true"
 -- runParser jsonBool "whatever"
@@ -90,24 +99,25 @@ notNull (Parser p) = Parser $ \input -> do
                                   if null xs then Nothing
                                              else Just (input', xs)
 
--- Note: no escape support
+-- Note: no quote escape code support
 stringLiteral :: Parser String
 stringLiteral = charP '"' *> spanP (/= '"') <* charP '"'
 
 jsonString :: Parser JsonValue
 jsonString = fmap JsonString stringLiteral
 
--- runParser jsonString "\"12345rest\"""
-
-jsonArray :: Parser JsonValue
-jsonArray = fmap JsonArray $ charP '[' *> ws *> elements <* ws <* charP ']'
-    where elements = sepBy sep jsonValue
-          sep = ws *> charP ',' <* ws
+-- runParser jsonString "\"12345test\"abc"
 
 ws :: Parser String
 ws = spanP isSpace
 
 -- runParser (many jsonNull) "nullnullnull"
+-- runParser (many (charP ',' *> jsonNull)) ",null,null,null"
+
+jsonArray :: Parser JsonValue
+jsonArray = fmap JsonArray $ charP '[' *> ws *> elements <* ws <* charP ']'
+    where elements = sepBy sep jsonValue
+          sep = ws *> charP ',' <* ws
 
 sepBy :: Parser a -> Parser b -> Parser [b]
 sepBy sep element = (:) <$> element <*> many (sep *> element) <|> pure []   
@@ -137,3 +147,4 @@ parseFile filename parser = do
     
 parseJson :: FilePath -> IO (Maybe JsonValue)
 parseJson filename = parseFile filename jsonValue
+
