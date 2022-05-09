@@ -8,8 +8,7 @@
 module Main where
 
 import Graphics.Gloss
-import Graphics.Gloss.Game as Game
-import Graphics.Gloss.Interface.Pure.Simulate
+import Graphics.Gloss.Interface.Pure.Game
 
 windowSize = 800
 
@@ -79,12 +78,12 @@ processEvent event world = world
 
 
 main :: IO ()
-main = Game.play
+main = play
            window
            background
            120
            defaultModel
            (scale 400 400 . view)
            processEvent
-           [ update ]
+           update
 

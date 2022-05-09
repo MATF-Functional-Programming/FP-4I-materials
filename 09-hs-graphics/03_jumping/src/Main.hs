@@ -8,7 +8,6 @@
 module Main where
 
 import Graphics.Gloss
-import Graphics.Gloss.Game
 import Graphics.Gloss.Data.ViewPort
 
 windowSize = 800

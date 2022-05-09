@@ -4,11 +4,11 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 
-name:           solar
+name:           gloss-intro
 version:        0.1.0.0
 description:    Please see the README on GitHub at <https://github.com/githubuser/gloss-intro#readme>
-homepage:       https://github.com/githubuser/solar#readme
-bug-reports:    https://github.com/githubuser/solar/issues
+homepage:       https://github.com/githubuser/gloss-intro#readme
+bug-reports:    https://github.com/githubuser/gloss-intro/issues
 author:         Author name here
 maintainer:     example@example.com
 copyright:      2022 Author name here
@@ -21,31 +21,27 @@ extra-source-files:
 
 source-repository head
   type: git
-  location: https://github.com/githubuser/solar
+  location: https://github.com/githubuser/gloss-intro
 
 library
-  exposed-modules:
-      Main
   other-modules:
-      Paths_solar
+      Paths_gloss_intro
   hs-source-dirs:
       src
   build-depends:
-      base >=4.8 && <5
+      base >=4.7 && <5
     , gloss
-    , gloss-game
   default-language: Haskell2010
 
-executable solar-exe
+executable gloss-intro-exe
   main-is: Main.hs
   other-modules:
-      Paths_solar
+      Paths_gloss_intro
   hs-source-dirs:
       app
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      base >=4.8 && <5
+      base >=4.7 && <5
     , gloss
-    , gloss-game
-    , solar
+    , gloss-intro
   default-language: Haskell2010

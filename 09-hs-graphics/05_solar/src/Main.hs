@@ -8,7 +8,6 @@
 module Main where
 
 import Graphics.Gloss
-import Graphics.Gloss.Game
 
 windowSize = 800
 
@@ -24,7 +23,6 @@ scaleEq factor = scale factor factor
 sunPicture   = scaleEq (0.20 / 256.0) $ png "images/sun.png"
 earthPicture = scaleEq (0.05 / 256.0) $ png "images/earth.png"
 moonPicture  = scaleEq (0.03 / 256.0) $ png "images/moon.png"
-
 
 view :: Float -> Picture
 view time = scale (windowSize / 2) (windowSize / 2) $

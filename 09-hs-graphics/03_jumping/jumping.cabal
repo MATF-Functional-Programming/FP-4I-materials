@@ -57,9 +57,8 @@ executable jumping
   -- other-extensions:
 
   -- Other library packages from which modules are imported.
-  build-depends:       base >=4.8 && <4.10,
-                       gloss >=1.10 && <1.11,
-                       gloss-game
+  build-depends:       base >=4.8 && <5,
+                       gloss
 
   -- Directories containing source files.
   hs-source-dirs:      src
