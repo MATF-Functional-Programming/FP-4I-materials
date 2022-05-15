@@ -22,7 +22,6 @@ description:         Please see the README on GitHub at <https://github.com/gith
 dependencies:
 - base >= 4.8 && < 5
 - gloss
-- gloss-game
 
 library:
   source-dirs: src

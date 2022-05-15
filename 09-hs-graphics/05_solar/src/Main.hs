@@ -8,6 +8,7 @@
 module Main where
 
 import Graphics.Gloss
+import Graphics.Gloss.Game
 
 windowSize = 800
 
