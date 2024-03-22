@@ -51,7 +51,7 @@
 
     ```hs
     instance Functor ((->) r) where
-        fmap f g = (.)
+        fmap = (.)
     ```   
     
 - Primeri: 
@@ -132,13 +132,13 @@
         pure x = Just x
 
         (Just f) <*> (Just x) = Just (f x)
-              _  <*>  _       = Nothing
+        _        <*> _        = Nothing
     ```
 
 - `[]` je `Applicative`
     ```hs
     instance Applicative [] where  
-        pure x = [x]  
+        pure x    = [x]  
         fs <*> xs = [f x | f <- fs, x <- xs]  
     ```
 
