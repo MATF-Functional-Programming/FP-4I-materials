@@ -61,6 +61,7 @@ main4 = do
 main5 = do 
     putStrLn "Enter name and surname:"
     combined <- concatenate <$> getLine <*> getLine
+    -- combined <- liftA2 concatenate getLine getLine
     putStrLn $ "Hello, " ++ combined
 
 

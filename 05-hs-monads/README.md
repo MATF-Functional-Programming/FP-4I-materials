@@ -118,3 +118,5 @@
         y <- Just "!"  
         Just (show x ++ y) 
     ```
+- Sta je zapravo IO?
+    - [IO inside](https://wiki.haskell.org/IO_inside#I.2FO_in_Haskell.2C_simplified)
