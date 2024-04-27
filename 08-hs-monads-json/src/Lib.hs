@@ -60,6 +60,7 @@ charP x = Parser f
 
 stringP :: String -> Parser String
 stringP input = sequenceA $ map charP input
+-- stringP = traverse charP
 
 -- runParser (fmap ord $ charP 'h') "hello"
 -- runParser (stringP "hello) "hello world!"
@@ -75,7 +76,7 @@ jsonBool :: Parser JsonValue
 jsonBool = fmap f $ stringP "true" <|> stringP "false"
     where f "true"  = JsonBool True
           f "false" = JsonBool False
-          f _       = undefined             -- Note: unreachable
+          f _       = error "unknown boolean value"
 
 -- runParser jsonBool "true"
 -- runParser jsonBool "whatever"
