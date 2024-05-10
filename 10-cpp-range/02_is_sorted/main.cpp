@@ -21,9 +21,9 @@ bool is_sorted(const T& xs)
         std::cbegin(xs) + 1,
         true,
         // Mozemo koristiti auto takodje
-        [](const bool &x, const bool &y) { return x && y; },
+        [](const bool &x, const bool &y) { return x && y; },    // std::logical_and<bool>(),
         // Ovde ne znamo tip elemenata kolekcije, pa stoga auto
-        [](const auto &x, const auto &y) { return x <= y; }
+        [](const auto &x, const auto &y) { return x <= y; }     // std::less_equal<decltype(*std::begin(xs))>()
     );
 }
 

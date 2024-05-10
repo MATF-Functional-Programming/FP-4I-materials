@@ -1,6 +1,6 @@
 PROGRAM=04_for_each.out
 CXX       = g++
-CXXFLAGS  = -g -std=c++14 -Wall -I../range-v3-0.11.0/include
+CXXFLAGS  = -g -std=c++14 -Wall -I../range-v3-0.12.0/include
 
 $(PROGRAM): main.o
 	$(CXX) -o $(PROGRAM) main.o
