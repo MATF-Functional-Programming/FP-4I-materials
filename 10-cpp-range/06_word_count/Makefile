@@ -1,6 +1,6 @@
 PROGRAM=06_word_count.out
 CXX       = g++
-CXXFLAGS  = -g -std=c++1z -Wall -I../range-v3-0.11.0/include
+CXXFLAGS  = -g -std=c++1z -Wall -I../range-v3-0.12.0/include
 
 $(PROGRAM): main.o
 	$(CXX) -o $(PROGRAM) main.o
