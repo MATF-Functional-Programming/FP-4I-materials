@@ -1,4 +1,4 @@
-PROGRAM   = main
+PROGRAM   = 01_optional_functor
 CXX       = g++
 CXXFLAGS  = -g -std=c++17 -Wall -I../range-v3/include
 
