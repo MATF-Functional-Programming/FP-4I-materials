@@ -21,7 +21,7 @@ int count_adj_equals(const T& xs)
         std::cbegin(xs) + 1,
         0,
         // Mozemo koristiti auto takodje
-        [](const int& x, const int &y) { return x + y; },  // std::plus<float>(),
+        [](const int& x, const int &y) { return x + y; },  // std::plus<int>(),
         // Ovde ne znamo tip elemenata kolekcije, pa stoga auto
         [](const auto& x, const auto &y) { return x == y ? 1 : 0; }
     );
