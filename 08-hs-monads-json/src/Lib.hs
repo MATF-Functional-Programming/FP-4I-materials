@@ -63,7 +63,7 @@ stringP input = sequenceA $ map charP input
 -- stringP = traverse charP
 
 -- runParser (fmap ord $ charP 'h') "hello"
--- runParser (stringP "hello) "hello world!"
+-- runParser (stringP "hello") "hello world!"
 
 jsonNull :: Parser JsonValue
 jsonNull = (\_ -> JsonNull) <$> stringP "null"

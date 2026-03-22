@@ -1,5 +1,5 @@
 -- Izvuci podlistu od indeksa i do indeksa j
--- slice [1..10] 2 4 = [2,3]
+-- slice [1..10] 2 4 = [2,3,4]
 
 slice :: [a] -> Int -> Int -> [a]
 slice xs i j = take (j-i+1) $ drop (i-1) xs
