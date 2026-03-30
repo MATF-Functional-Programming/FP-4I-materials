@@ -36,7 +36,13 @@ main = putStrLn "Test suite not yet implemented"
 --    shrink    - ako QuickCheck nadje vrednost za koju test ne prolazi,
 --                pokusace da nadje "manje" vrednosti koristeci ovu 
 --                funkciju kako bi test primer bio sto minimalniji
-
+--
+-- Kako pravimo nasumicne vrednosti?
+--    
+--    arbitrary :: Gen Bool    -- ne moze da se prikaze, zato:
+--    sample $ (arbitrary :: Gen Bool)
+--    sample $ (arbitrary :: Gen Int)
+--    itd.
 
 -- prop_conversions :: [Int] -> Bool
 prop_conversions s =
